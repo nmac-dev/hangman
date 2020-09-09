@@ -22,7 +22,6 @@ namespace hangman {
                         arMediumWords = File.ReadAllLines(archive.Open() + "/words/medium.txt");
                         arHardWords = File.ReadAllLines(archive.Open() + "/words/hard.txt");
                     }
-                    
                 }
                 fileStream.Close();
             }

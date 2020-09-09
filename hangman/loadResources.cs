@@ -5,7 +5,7 @@ using System.IO.Compression;
 using System.IO;
 
 namespace hangman {
-    public static class loadResources {
+    public static class LoadResources {
         /** .ZIP Contents */
         private static string zipName = "resources.zip";
         /** Variables */

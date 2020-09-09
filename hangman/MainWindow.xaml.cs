@@ -35,6 +35,7 @@ namespace hangman {
         /** Events */
 
         private void btnEasy_Click(object sender, RoutedEventArgs e) {
+            load
         }
 
         private void btnMedium_Click(object sender, RoutedEventArgs e) {

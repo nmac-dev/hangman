@@ -18,21 +18,18 @@ namespace hangman {
             InitializeComponent();
             UILogic.loadUIElements(stplWord.Children.OfType<TextBlock>().ToList(), imgState);
             try {
-                arEasyWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/easy_words.txt");
-                arMediumWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/medium_words.txt");
-                arHardWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/hard_words.txt");
+                arEasyWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/words/easy.txt");
+                arMediumWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/words/medium.txt");
+                arHardWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/words/hard.txt");
             } catch {
                 throw new IOException("Error: File location failed to validate");
             }
-            
         }
-
-
 
         /** Functions */
 
         private void setupGame(int difficulty) {
-            gameLogic = new GameLogic(4);
+            
         }
 
         /** Events */

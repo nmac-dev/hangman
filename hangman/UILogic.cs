@@ -4,16 +4,20 @@ using System.Text;
 using System.Windows.Controls;
 
 namespace hangman {
-    static class UILogic {
+    class UILogic {
 
         /** UI Elements */
-        public static List<TextBlock> lsTxbAwnser;
+        private static List<TextBlock> lsTxbAwnser;
         private static Image imgState;
+        private static Label lblScore, lblLives, lblVictory;
 
         /** UI Functions */
-        public static void loadUIElements(List<TextBlock> lsTxb, Image img) {
+        public static void loadUIElements(List<TextBlock> lsTxb, Image img, Label lblSc, Label lblLv, Label lblVic) {
             lsTxbAwnser = lsTxb;
             imgState = img;
+            lblScore = lblSc;
+            lblLives = lblLv;
+            lblVictory = lblVic;
         }
 
         public static void resetUI() {
@@ -22,7 +26,18 @@ namespace hangman {
             }
         }
 
-        public static void setWord(string[] arString) {
+        public static TextBlock getTxb(int index) {
+            return lsTxbAwnser[index];
+        }
+
+        public static Label getLblScore() {
+            return lblScore;
+        }
+        public static Label getLblLives() {
+            return lblLives;
+        }
+        public static Label getlblVictory() {
+            return lblVictory;
         }
     }
 }

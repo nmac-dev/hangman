@@ -17,33 +17,40 @@ namespace hangman {
         public MainWindow() {
             InitializeComponent();
             UILogic.loadUIElements(stplWord.Children.OfType<TextBlock>().ToList(), imgState);
-            try {
-                arEasyWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/words/easy.txt");
-                arMediumWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/words/medium.txt");
-                arHardWords = File.ReadAllLines(Environment.CurrentDirectory + "/resources/words/hard.txt");
-            } catch {
-                throw new IOException("Error: File location failed to validate");
-            }
+            // Get files from embedded resources
+            arEasyWords = LoadResources.loadTxtFileToArray(4);
+            arMediumWords = LoadResources.loadTxtFileToArray(6);
+            arHardWords = LoadResources.loadTxtFileToArray(8);
         }
 
         /** Functions */
 
         private void setupGame(int difficulty) {
             
+            Random rdm = new Random();
+            int rdmInt = rdm.Next(0, 500);
+            // Select word
+            string word = difficulty switch {
+                4 => arEasyWords[rdmInt],
+                6 => arMediumWords[rdmInt],
+                8 => arHardWords[rdmInt]
+            };
+            // Create game
+            gameLogic = new GameLogic(difficulty, word);
         }
 
         /** Events */
 
         private void btnEasy_Click(object sender, RoutedEventArgs e) {
-            load
+            this.setupGame(4);
         }
 
         private void btnMedium_Click(object sender, RoutedEventArgs e) {
-
+            this.setupGame(6);
         }
 
         private void btnHard_Click(object sender, RoutedEventArgs e) {
-
+            this.setupGame(8);
         }
     }
 }

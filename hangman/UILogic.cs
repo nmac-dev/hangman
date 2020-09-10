@@ -7,7 +7,7 @@ namespace hangman {
     static class UILogic {
 
         /** UI Elements */
-        private static List<TextBlock> lsTxbAwnser;
+        public static List<TextBlock> lsTxbAwnser;
         private static Image imgState;
 
         /** UI Functions */
@@ -20,6 +20,9 @@ namespace hangman {
             foreach (TextBlock txb in lsTxbAwnser) {
                 txb.Text = "";
             }
+        }
+
+        public static void setWord(string[] arString) {
         }
     }
 }

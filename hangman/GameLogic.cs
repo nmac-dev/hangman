@@ -9,21 +9,21 @@ namespace hangman {
         /** Variables */
         private int life;
         private int score;
-        private char[] arrLetters;
+        private readonly char[] arCorrectWord;
 
-        /** UI Elements */
-        private static List<TextBlock> lsWordToGuess;
-        private static Image imgState;
-
-        public GameLogic(int difficulty, List<TextBlock> lsTxb, Image img) {
+        public GameLogic(int difficulty, string word) {
             life = 10;
             score = 0;
-            arrLetters = new char[difficulty];
-            lsWordToGuess = lsTxb;
-            imgState = img;
+            arCorrectWord = new char[difficulty];
+            arCorrectWord = word.ToCharArray();
 
         }
 
         /** Functions */
+        private void checkUserInput(char input) {
+            foreach(char character in arCorrectWord) {
+
+            }
+        }
     }
 }

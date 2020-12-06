@@ -6,12 +6,12 @@ using System.Windows.Controls;
 namespace hangman {
     class UILogic {
 
-        /** UI Elements */
+        /*      UI Elements     */
         private static List<TextBlock> lsTxbAwnser;
         private static Image imgState;
         private static Label lblScore, lblLives, lblVictory;
 
-        /** UI Functions */
+        /*      UI Functions        */
         public static void loadUIElements(List<TextBlock> lsTxb, Image img, Label lblSc, Label lblLv, Label lblVic) {
             lsTxbAwnser = lsTxb;
             imgState = img;
@@ -28,16 +28,6 @@ namespace hangman {
 
         public static TextBlock getTxb(int index) {
             return lsTxbAwnser[index];
-        }
-
-        public static Label getLblScore() {
-            return lblScore;
-        }
-        public static Label getLblLives() {
-            return lblLives;
-        }
-        public static Label getlblVictory() {
-            return lblVictory;
         }
     }
 }

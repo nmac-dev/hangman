@@ -7,16 +7,21 @@ using System.Reflection;
 
 namespace hangman {
     public static class LoadResources {
-        /** Resource names */
-        private static string dirWords = "hangman.resources.words.";
+
+        // resource directory
+        private static readonly string dirWords = "hangman.resources.words.";
+
+        // resources
         private static string txtEasy = "easy.txt";
         private static string txtMedium = "medium.txt";
         private static string txtHard = "hard.txt";
-        
-        /** Variables */
-        private static Assembly assembly = Assembly.GetExecutingAssembly();
 
+        // gets the assembly, used to load resources
+        private static readonly Assembly assembly = Assembly.GetExecutingAssembly();
+
+        /** Load a text file resource (filtered by difficulty) */
         public static string[] loadTxtFileToArray(int difficulty) {
+
             string[] arString;
             // Select .txt file location
             string wordLength = difficulty switch {

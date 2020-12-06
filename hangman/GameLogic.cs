@@ -12,7 +12,7 @@ namespace hangman {
         // the answer the user has to guess
         private readonly char[] arAnswer;
         // elements used to track the game
-        private int life, score, victory;
+        private int lives, score, victory;
 
         /*      Constructors        */
 
@@ -25,9 +25,10 @@ namespace hangman {
 
         /** Initialise game */
         public GameLogic(int difficulty) {
-            life = 10;
+            lives = 10;
             score = 0;
             arAnswer = generateAnswer(difficulty).ToCharArray();
+            UIControls.loadGameValues(difficulty);
             victory = arAnswer.Length;
         }
 
@@ -54,10 +55,9 @@ namespace hangman {
             
             bool takeLife = true;
             for (int i = 0; i < arAnswer.Length; i++) {
-                MessageBox.Show($"{arAnswer[i]}");
                 if (arAnswer[i] == input) {
                     arAnswer[i] = ' ';
-                    UILogic.getTxb(i).Text = input.ToString();
+                    UIControls.setTxb(i, input);
                     takeLife = false;
                     score++;
                 }
@@ -65,7 +65,9 @@ namespace hangman {
             // victory condition
             if (score == victory) { MessageBox.Show("You Win!!"); }
             // incorrect guess
-            if (takeLife) { life--; }
+            if (takeLife) { 
+                UIControls.setLives(lives--);
+            }
         }
 
         public void endGame() {

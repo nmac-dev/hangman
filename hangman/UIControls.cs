@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Controls;
 
 namespace hangman {
-    class UILogic {
+    internal static class UIControls {
 
         /*      UI Elements     */
         private static List<TextBlock> lsTxbAwnser;
@@ -20,14 +20,23 @@ namespace hangman {
             lblVictory = lblVic;
         }
 
+        public static void loadGameValues(int difficulty) {
+            lblLives.Content = $"Guesses: {10}";
+            lblScore.Content = $"Letters: {difficulty}";
+        }
+
+        public static void setLives(int lives) {
+            lblLives.Content = $"Guesses: {lives}";
+        }
+
         public static void resetUI() {
             foreach (TextBlock txb in lsTxbAwnser) {
                 txb.Text = "";
             }
         }
 
-        public static TextBlock getTxb(int index) {
-            return lsTxbAwnser[index];
+        public static void setTxb(int index, char value) {
+            lsTxbAwnser[index].Text = Char.ToUpper(value).ToString();
         }
     }
 }

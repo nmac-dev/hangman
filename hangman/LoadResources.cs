@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO.Compression;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 
 namespace hangman {
-    public static class LoadResources {
+    /** 
+     * Defines a class that loads embedded resources from the assembly 
+     */
+    internal static class LoadResources {
 
-        // resource directory
+        // text files directory
         private static readonly string dirWords = "hangman.resources.words.";
 
-        // resources
+        // text files
         private static string txtEasy = "easy.txt";
         private static string txtMedium = "medium.txt";
         private static string txtHard = "hard.txt";
@@ -30,8 +29,8 @@ namespace hangman {
                 8 => dirWords + txtHard
             };
             // Get file from resource manifest
-            using (var stream = assembly.GetManifestResourceStream($"{wordLength}")) {
-                using (var sReader = new StreamReader(stream)) {
+            using (Stream stream = assembly.GetManifestResourceStream($"{wordLength}")) {
+                using (StreamReader sReader = new StreamReader(stream)) {
                     arString = sReader.ReadToEnd().Split('\n');
                 }
             }

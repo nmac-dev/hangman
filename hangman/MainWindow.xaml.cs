@@ -18,7 +18,7 @@ namespace hangman {
         private GameLogic gameLogic;
         public MainWindow() {
             InitializeComponent();
-            UILogic.loadUIElements(txbStackPanel.Children.OfType<TextBlock>().ToList(), imgState, lblScore, lblLives, lblVictory);
+            UIControls.loadUIElements(txbStackPanel.Children.OfType<TextBlock>().ToList(), imgState, lblScore, lblLives, lblVictory);
 
             KeyDown += new KeyEventHandler(MainWindow_KeyDown);
             keyCon = new KeyConverter();
@@ -41,11 +41,10 @@ namespace hangman {
         private void MainWindow_KeyDown(object sender, KeyEventArgs e) {
 
             if (gameLogic != null) {
-                char key = keyCon.ConvertToString(e.Key)[0];
-                if (Regex.IsMatch($"{key}", @"[A-Z]")) {
+                char key = Char.ToLower(keyCon.ConvertToString(e.Key)[0]);
+                if (Regex.IsMatch($"{key}", @"[a-z]")) {
                 gameLogic.checkUserInput(key);
-                }
-
+                } // else ignore input
             } else {
                 MessageBox.Show("Error: Select difficulty ");
             }

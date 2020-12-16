@@ -15,10 +15,12 @@ namespace hangman {
         // used to detect user key press
         private static KeyConverter keyCon;
 
-        private GameLogic gameLogic;
+        private HangmanLogic gameLogic;
         public MainWindow() {
             InitializeComponent();
-            UIControls.loadUIElements(txbStackPanel.Children.OfType<TextBlock>().ToList(), imgState, lblScore, lblLives, lblVictory);
+            UIControls.loadUIElements(
+                txbStackPanel.Children.OfType<TextBlock>().ToList(), 
+                imgState, lblLetters, lblLives, txbGuesses, lblVictory);
 
             KeyDown += new KeyEventHandler(MainWindow_KeyDown);
             keyCon = new KeyConverter();
@@ -26,15 +28,21 @@ namespace hangman {
 
         /*      Events          */
         private void btnEasy_Click(object sender, RoutedEventArgs e) {
-            gameLogic = new GameLogic(4);
+            gameLogic = new HangmanLogic(4);
         }
 
         private void btnMedium_Click(object sender, RoutedEventArgs e) {
-            gameLogic = new GameLogic(6);
+            gameLogic = new HangmanLogic(6);
         }
 
         private void btnHard_Click(object sender, RoutedEventArgs e) {
-            gameLogic = new GameLogic(8);
+            gameLogic = new HangmanLogic(8);
+        }
+
+        private void btnGiveUp_Click(object sender, RoutedEventArgs e) {
+            if (gameLogic != null) {
+            gameLogic.playerGiveUp();
+            }
         }
 
         /** Detect user keyboard input */
@@ -42,12 +50,14 @@ namespace hangman {
 
             if (gameLogic != null) {
                 char key = Char.ToLower(keyCon.ConvertToString(e.Key)[0]);
+                // only accept alpha characters (non-numeric)
                 if (Regex.IsMatch($"{key}", @"[a-z]")) {
                 gameLogic.checkUserInput(key);
-                } // else ignore input
+                }
             } else {
                 MessageBox.Show("Error: Select difficulty ");
             }
         }
+
     }
 }

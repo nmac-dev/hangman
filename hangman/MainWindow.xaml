@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hangman"
         mc:Ignorable="d"
-        Title="Hangman" Height="520" Width="590" ResizeMode="NoResize">
+        Title="Hangman" Height="520" Width="600" ResizeMode="NoResize">
     <!--Style-->
     <Window.Resources>
         <!--Button-->
@@ -52,6 +52,7 @@
             <Setter Property="Margin" Value="0,0,5,0"/>
         </Style>
     </Window.Resources>
+    <!--Grid-->
     <Grid Background="#222">
         <Grid.RowDefinitions>
             <RowDefinition Height="31*"/>
@@ -63,12 +64,22 @@
             <Button x:Name="btnEasy" Content="Easy" Click="btnEasy_Click"/>
             <Button x:Name="btnMedium" Content="Medium" Click="btnMedium_Click"/>
             <Button x:Name="btnHard" Content="Hard" Click="btnHard_Click"/>
-            <Button Content="Give Up?" Margin="20,0,0,0" HorizontalAlignment="Right" />
+            <Button x:Name="btnGiveUp" Content="Give Up?" Margin="55,0,0,0" Click="btnGiveUp_Click" />
+        </StackPanel>
+        <!--Output Display-->
+        <StackPanel Orientation="Vertical" Margin="379,19,0,0" HorizontalAlignment="Left" Width="195" Height="361" VerticalAlignment="Top" Grid.Row="1">
+            <Label x:Name="lblLetters" Content="Letters: X" Foreground="#fff" FontSize="15" Height="30" />
+            <Label x:Name="lblLives" Content="Lives: X" Foreground="#fff" FontSize="15" Height="30"/>
+            <Label/>
+            <Separator/>
+            <TextBlock x:Name="txbGuesses" Text="Guesses: X" TextWrapping="Wrap" Width="auto" Background="Transparent" FontSize="15" />
+            <Separator/>
         </StackPanel>
         <!--Main Image-->
         <Image x:Name="imgState" Height="360" Width="363" Margin="10,19,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1"/>
-        <Label x:Name="lblVictory" Content="Letters: X" Foreground="#fff" FontSize="80" HorizontalContentAlignment="Center"  Margin="0,135,0,0" Height="135" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Center" Width="590"/>
-        <!--Output Display-->
+        <!--Victory Label-->
+        <Label x:Name="lblVictory" Content="Letters: X" Visibility="Collapsed" Opacity="0.75" Foreground="#fff" Background="#111" FontSize="80" HorizontalContentAlignment="Center"  Margin="0,135,0,0" Height="135" VerticalAlignment="Top" Grid.Row="1" HorizontalAlignment="Center" Width="590"/>
+        <!--User Input Display-->
         <StackPanel x:Name="txbStackPanel" Margin="10,385,0,0" Orientation="Horizontal" HorizontalAlignment="Left" Width="565" Height="60" VerticalAlignment="Top" Grid.Row="1">
             <TextBlock/>
             <TextBlock/>
@@ -79,7 +90,5 @@
             <TextBlock/>
             <TextBlock/>
         </StackPanel>
-        <Label x:Name="lblScore" Content="Letters: X" Foreground="#fff" FontSize="15" Margin="0,0,11,424" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90" Grid.Row="1"/>
-        <Label x:Name="lblLives" Content="Guesses: X" Foreground="#fff" FontSize="15" Margin="0,0,11,389" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90" Grid.Row="1"/>
     </Grid>
 </Window>

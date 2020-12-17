@@ -11,19 +11,13 @@ namespace hangman {
         /*      Const       */
         private const int MAX_LIVES = 12;
 
-        // array of words for each difficulty
-        private static readonly string[] arEasyWords, arMediumWords, arHardWords;
-        // the images to be display 
-        private static readonly BitmapImage[] arImageStates;
-        // the answer the user has to guess
-        private readonly char[] arAnswer;
-
-        // tracks which letter has been guessed
-        private List<char> lsGuessedLetters;
-        // elements used to track the game
-        private int lives, letters;
-        // if true process user input
-        private bool acceptInput;
+        /*      Variables       */
+        private static readonly string[] arEasyWords, arMediumWords, arHardWords;   // array of words for each difficulty
+        private static readonly BitmapImage[] arImageStates;                        // the images to be display 
+        private readonly char[] arAnswer;                                           // the answer the user has to guess
+        private List<char> lsGuessedLetters;                                        // tracks which letter has been guessed
+        private int lives, letters;                                                 // elements used to track the game
+        private bool acceptInput;                                                   // if true process user input
 
         /*      Constructors        */
 
@@ -101,17 +95,19 @@ namespace hangman {
                     UIControls.setImgState(arImageStates[lives]);
                 }
 
-                // player has won
-                if (letters == 0) {
-                    UIControls.setPlayerWon(true);
-                    acceptInput = false;
-                }
-                // player has lost
-                else if (lives == 0) {
-                    UIControls.setPlayerWon(false);
-                    acceptInput = false;
-                }
+                checkGameOver(letters == 0, lives == 0);
+            }
+        }
+        /** Checks if the player has met either a victory or defeat condition */
+        public void checkGameOver(bool hasWon, bool hasLost) {
 
+            if (hasWon) {
+                UIControls.setPlayerWon(true);
+                acceptInput = false;
+            } 
+            else if (hasLost) {
+                UIControls.setPlayerWon(false);
+                acceptInput = false;
             }
         }
 

@@ -13,17 +13,16 @@ namespace hangman {
         private const int MAX_LIVES = 12;
 
         /*      UI Elements     */
-        private static List<TextBlock> lsTxbAwnser;
-        private static Image imgState;
-        private static Label lblScore, lblLives, lblVictory;
-        private static TextBlock txbGuesses;
+        private static List<TextBlock> lsTxbAwnser;             // output for correctly guessed letters
+        private static Image imgState;                          // displays the hangman image for the current state of the game
+        private static Label lblLetters, lblLives, lblVictory;  // letters to guess, lives left, victory (or defeat) message
+        private static TextBlock txbGuesses;                    // contains all guessed letters
 
         /*      UI Functions        */
         public static void loadUIElements(List<TextBlock> lsTxb, Image img, Label lblSc, Label lblLv, TextBlock txbGes, Label lblVic) {
-            //arImages = LoadResources.loadImages(MAX_LIVES);
             lsTxbAwnser = lsTxb;
             imgState = img;
-            lblScore = lblSc;
+            lblLetters = lblSc;
             lblLives = lblLv;
             txbGuesses = txbGes;
             lblVictory = lblVic;
@@ -45,7 +44,7 @@ namespace hangman {
         }
 
         public static void setLetters(int remaining) {
-            lblScore.Content = $"Letters: {remaining}";
+            lblLetters.Content = $"Letters: {remaining}";
         }
 
         public static void setLives(int lives) {
@@ -53,11 +52,13 @@ namespace hangman {
         }
 
         public static void setGuesses(List<char> guesses) {
+
             StringBuilder sb = new StringBuilder();
+
             if (guesses != null) {
-            guesses.ForEach(delegate (char letter) {
-                sb.Append(letter).Append("  ");
-            });
+                guesses.ForEach(delegate (char letter) {
+                    sb.Append(letter).Append("  ");
+                });
             }
             txbGuesses.Text = $"Guesses: \n {sb}";
         }

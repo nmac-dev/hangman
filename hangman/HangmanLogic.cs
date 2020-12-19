@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Windows;
-using System.Drawing;
 using System.Collections.Generic;
-using System.Collections;
 using System.Windows.Media.Imaging;
 
 namespace hangman {
@@ -14,7 +11,7 @@ namespace hangman {
         /*      Variables       */
         private static readonly string[] arEasyWords, arMediumWords, arHardWords;   // array of words for each difficulty
         private static readonly BitmapImage[] arImageStates;                        // the images to be display 
-        private readonly char[] arAnswer;                                           // the answer the user has to guess
+        private readonly char[] arWordToGuess;                                      // the word the user has to guess (using chars inputs)
         private List<char> lsGuessedLetters;                                        // tracks which letter has been guessed
         private int lives, letters;                                                 // elements used to track the game
         private bool acceptInput;                                                   // if true process user input
@@ -33,31 +30,28 @@ namespace hangman {
         public HangmanLogic(int difficulty) {
             letters = difficulty;
             lives = MAX_LIVES;
-            arAnswer = generateAnswer(difficulty).ToCharArray();
+            arWordToGuess = generateAnswer(difficulty);
             lsGuessedLetters = new List<char>();
-            UIControls.resetUI(letters, lives, arImageStates[0]);
-            UIControls.setLives(lives);
-            UIControls.setLetters(letters);
-            UIControls.setImgState(arImageStates[0]);
+            UIControls.resetUI(letters, lives);
             acceptInput = true;
         }
 
         /*      Functions           */
 
         /** Selects a random word from one of the string arrays */
-        private string generateAnswer(int stringSize) {
+        private char[] generateAnswer(int stringSize) {
 
             // Get random int for the string array index
             Random rdm = new Random();
             int rdmInt = rdm.Next(0, 500);
             // Select word to be guessed by the user
-            string wordHangman = stringSize switch {
+            string wordToGuess = stringSize switch {
                 4 => arEasyWords[rdmInt],
                 6 => arMediumWords[rdmInt],
                 8 => arHardWords[rdmInt]
             };
             // Instantiate new game
-            return wordHangman.Trim();
+            return wordToGuess.Trim().ToCharArray();
         }
 
         /** Checks the user input against the char array */
@@ -77,8 +71,8 @@ namespace hangman {
 
                 // Check letter is correct only if it has not been previously guessed
                 if (takeLife) {
-                    for (int i = 0; i < arAnswer.Length; i++) {
-                        if (arAnswer[i] == input) {
+                    for (int i = 0; i < arWordToGuess.Length; i++) {
+                        if (arWordToGuess[i] == input) {
                             letters--;
                             takeLife = false;
                             UIControls.setTxb(i, input);
@@ -114,8 +108,8 @@ namespace hangman {
         /** Update UI with full answer and notify player they lost */
         public void playerGiveUp() {
             UIControls.setPlayerWon(false);
-            for(int i = 0; i < arAnswer.Length; i++) {
-                UIControls.setTxb(i, arAnswer[i]);
+            for(int i = 0; i < arWordToGuess.Length; i++) {
+                UIControls.setTxb(i, arWordToGuess[i]);
             }
             acceptInput = false;
         }

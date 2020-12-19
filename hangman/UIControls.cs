@@ -15,7 +15,7 @@ namespace hangman {
         /*      UI Elements     */
         private static List<TextBlock> lsTxbAwnser;             // output for correctly guessed letters
         private static Image imgState;                          // displays the hangman image for the current state of the game
-        private static Label lblLetters, lblLives, lblVictory;  // letters to guess, lives left, victory (or defeat) message
+        private static Label lblLetters, lblLives, lblVictory;  // letters to guess, lives left, victory (or defeat) banner
         private static TextBlock txbGuesses;                    // contains all guessed letters
 
         /*      UI Functions        */
@@ -28,14 +28,14 @@ namespace hangman {
             lblVictory = lblVic;
         }
 
-        public static void resetUI(int letters, int lives, BitmapImage startImg) {
+        public static void resetUI(int letters, int lives) {
             foreach (TextBlock txb in lsTxbAwnser) {
                 txb.Text = "";
             }
             setGuesses(null);
             setLetters(letters);
             setLives(lives);
-            setImgState(startImg);
+            setImgState(new BitmapImage());
             lblVictory.Visibility = Visibility.Collapsed;
         }
 

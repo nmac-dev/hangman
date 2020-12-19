@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,10 +11,10 @@ namespace hangman {
     /// </summary>
     public partial class MainWindow : Window {
 
-        // used to detect user key press
-        private static KeyConverter keyCon;
+        
+        private static KeyConverter keyCon;     // used to detect user key press
+        private HangmanLogic gameLogic;         // An instanc of the game logic
 
-        private HangmanLogic gameLogic;
         public MainWindow() {
             InitializeComponent();
             UIControls.loadUIElements(
@@ -58,6 +57,5 @@ namespace hangman {
                 MessageBox.Show("Error: Select difficulty ");
             }
         }
-
     }
 }

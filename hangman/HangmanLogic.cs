@@ -50,7 +50,7 @@ namespace hangman {
                 6 => arMediumWords[rdmInt],
                 8 => arHardWords[rdmInt]
             };
-            // Instantiate new game
+            // Remove white space
             return wordToGuess.Trim().ToCharArray();
         }
 
@@ -92,6 +92,7 @@ namespace hangman {
                 checkGameOver(letters == 0, lives == 0);
             }
         }
+
         /** Checks if the player has met either a victory or defeat condition */
         public void checkGameOver(bool hasWon, bool hasLost) {
 

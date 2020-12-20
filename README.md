@@ -1,5 +1,5 @@
 # hangman
-A game of Hangman that uses embedded resouces as a WPF application.
+A game of Hangman that uses embedded resources as a WPF application.
 
 <b> Development Resources: </b>
 

@@ -20,9 +20,8 @@ namespace hangman {
         private static string txtMedium = "medium";
         private static string txtHard = "hard";
 
-
         /** Load a text file resource (filtered by difficulty) */
-        public static string[] loadTxtFile(int difficulty) {
+        internal static string[] loadTxtFile(int difficulty) {
 
             string[] arString;
             // Gets the file name (without extention) based on the selected difficulty
@@ -40,9 +39,8 @@ namespace hangman {
             return arString;
         }
 
-
         /** Loads all .png files (total of 12) */
-        public static BitmapImage[] loadImages(int maxLives) {
+        internal static BitmapImage[] loadImages(int maxLives) {
             BitmapImage tempBmI;
             BitmapImage[] arImages = new BitmapImage[maxLives];
             int reverse = maxLives - 1;

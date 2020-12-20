@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace hangman {
-    internal static class UIControls {
+    public static class UIControls {
 
         /*      Const       */
         private const int MAX_LIVES = 12;

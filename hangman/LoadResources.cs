@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace hangman {
@@ -23,7 +24,7 @@ namespace hangman {
         /** Load a text file resource (filtered by difficulty) */
         internal static string[] loadTxtFile(int difficulty) {
 
-            string[] arString;
+            string[] arString = null;
             // Gets the file name (without extention) based on the selected difficulty
             string fileName = difficulty switch {
                 4 => dirWords + txtEasy,
@@ -31,10 +32,18 @@ namespace hangman {
                 8 => dirWords + txtHard
             };
             // Get file from resource manifest
-            using (Stream stream = assembly.GetManifestResourceStream($"{fileName}.txt")) {
-                using (StreamReader sReader = new StreamReader(stream)) {
-                    arString = sReader.ReadToEnd().Split('\n');
+            try {
+                using (Stream stream = assembly.GetManifestResourceStream($"{fileName}.txt")) {
+                    try {
+                        using (StreamReader sReader = new StreamReader(stream)) {
+                            arString = sReader.ReadToEnd().Split('\n');
+                        }
+                    } catch (FileFormatException e) {
+                        MessageBox.Show($"Exception: {fileName}.txt is the wrong format... {e.Message}");
+                    }
                 }
+            } catch (FileNotFoundException e) {
+                MessageBox.Show($"Exception: {fileName}.txt was not found... {e.Message}");
             }
             return arString;
         }
@@ -46,15 +55,19 @@ namespace hangman {
             int reverse = maxLives - 1;
 
             for(int i = 1; i < maxLives +1; i++, reverse--) {
-                using (Stream stream = assembly.GetManifestResourceStream($"{dirImages + i}.png")) {
+                try {
+                    using (Stream stream = assembly.GetManifestResourceStream($"{dirImages + i}.png")) {
 
-                    tempBmI = new BitmapImage();
+                        tempBmI = new BitmapImage();
 
-                    tempBmI.BeginInit();
-                    tempBmI.StreamSource = stream;
-                    tempBmI.CacheOption = BitmapCacheOption.OnLoad;
-                    tempBmI.EndInit();
-                    arImages[reverse] = tempBmI;
+                        tempBmI.BeginInit();
+                        tempBmI.StreamSource = stream;
+                        tempBmI.CacheOption = BitmapCacheOption.OnLoad;
+                        tempBmI.EndInit();
+                        arImages[reverse] = tempBmI;
+                    }
+                } catch (FileNotFoundException e) {
+                    MessageBox.Show($"Exception: {dirImages + i}.png was not found... {e.Message}");
                 }
             }
             return arImages;

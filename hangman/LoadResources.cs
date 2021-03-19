@@ -62,7 +62,6 @@ namespace hangman {
             int reverse = maxLives - 1;
 
             for(int i = 1; i < maxLives +1; i++, reverse--) {
-                
                 try {
                     using (Stream stream = assembly.GetManifestResourceStream($"{dirImages + i}.png")) {
 

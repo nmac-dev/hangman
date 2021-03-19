@@ -13,23 +13,28 @@ namespace hangman {
         private const int MAX_LIVES = 12;
 
         /*      UI Elements     */
-        private static List<TextBlock> lsTxbAwnser;             // output for correctly guessed letters
-        private static Image imgState;                          // displays the hangman image for the current state of the game
-        private static Label lblLetters, lblLives, lblVictory;  // letters to guess, lives left, victory (or defeat) banner
-        private static TextBlock txbGuesses;                    // contains all guessed letters
+        private static List<TextBlock> lsTxbAwnser;     // output for correctly guessed letters
+        private static Image imgState;                  // displays the hangman image for the current state of the game
+        private static Label lblLetters,                // letters to guess, lives left, victory (or defeat) banner
+                             lblLives, 
+                             lblVictory;  
+        private static TextBlock txbGuesses;            // contains all guessed letters
 
         /*      UI Functions        */
         public static void loadUIElements(List<TextBlock> lsTxb, Image img, Label lblSc, Label lblLv, TextBlock txbGes, Label lblVic) {
+
             lsTxbAwnser = lsTxb;
-            imgState = img;
-            lblLetters = lblSc;
-            lblLives = lblLv;
-            txbGuesses = txbGes;
-            lblVictory = lblVic;
+            imgState    = img;
+            lblLetters  = lblSc;
+            lblLives    = lblLv;
+            txbGuesses  = txbGes;
+            lblVictory  = lblVic;
         }
 
         public static void resetUI(int letters, int lives) {
+
             foreach (TextBlock txb in lsTxbAwnser) {
+                
                 txb.Text = "";
             }
             setGuesses(null);
@@ -39,17 +44,12 @@ namespace hangman {
             lblVictory.Visibility = Visibility.Collapsed;
         }
 
-        public static void setImgState(BitmapImage state) {
-            imgState.Source = state;
-        }
+        /*  Setters     */
+        public static void setImgState(BitmapImage state) { imgState.Source = state; }
 
-        public static void setLetters(int remaining) {
-            lblLetters.Content = $"Letters: {remaining}";
-        }
+        public static void setLetters(int remaining) { lblLetters.Content = $"Letters: {remaining}"; }
 
-        public static void setLives(int lives) {
-            lblLives.Content = $"Lives: {lives}";
-        }
+        public static void setLives(int lives) { lblLives.Content = $"Lives: {lives}"; }
 
         public static void setGuesses(List<char> guesses) {
 
@@ -57,23 +57,21 @@ namespace hangman {
 
             if (guesses != null) {
                 guesses.ForEach(delegate (char letter) {
+
                     sb.Append(letter).Append("  ");
                 });
             }
             txbGuesses.Text = $"Guesses: \n {sb}";
         }
 
-        public static void setTxb(int index, char value) {
-            lsTxbAwnser[index].Text = Char.ToUpper(value).ToString();
-        }
+        public static void setTxb(int index, char value) { lsTxbAwnser[index].Text = Char.ToUpper(value).ToString(); }
 
         public static void setPlayerWon(bool hasWon) {
+
             lblVictory.Visibility = Visibility.Visible;
-            if (hasWon) {
-                lblVictory.Content = "You Won";
-            } else {
-                lblVictory.Content = "You Lose";
-            }
+            
+            if (hasWon) { lblVictory.Content = "You Won";  } 
+            else        { lblVictory.Content = "You Lose"; }
         }
     }
 }

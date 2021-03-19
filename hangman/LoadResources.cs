@@ -4,10 +4,10 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace hangman {
+    /// <summary>
+    /// Loads the embedded resources for the Hangman game
+    /// </summary>
     internal static class LoadResources {
-        //
-        // Summary:
-        //     Loads the embedded resources for the Hangman game
 
         /*      Assembly        */
         private static readonly Assembly assembly = Assembly.GetExecutingAssembly();

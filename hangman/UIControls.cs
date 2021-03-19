@@ -45,11 +45,17 @@ namespace hangman {
         }
 
         /*  Setters     */
-        public static void setImgState(BitmapImage state) { imgState.Source = state; }
+        public static void setImgState(BitmapImage state) { 
+            imgState.Source = state; 
+        }
 
-        public static void setLetters(int remaining) { lblLetters.Content = $"Letters: {remaining}"; }
+        public static void setLetters(int remaining) { 
+            lblLetters.Content = $"Letters: {remaining}"; 
+        }
 
-        public static void setLives(int lives) { lblLives.Content = $"Lives: {lives}"; }
+        public static void setLives(int lives) { 
+            lblLives.Content = $"Lives: {lives}"; 
+        }
 
         public static void setGuesses(List<char> guesses) {
 
@@ -64,7 +70,9 @@ namespace hangman {
             txbGuesses.Text = $"Guesses: \n {sb}";
         }
 
-        public static void setTxb(int index, char value) { lsTxbAwnser[index].Text = Char.ToUpper(value).ToString(); }
+        public static void setTxb(int index, char value) { 
+            lsTxbAwnser[index].Text = Char.ToUpper(value).ToString(); 
+        }
 
         public static void setPlayerWon(bool hasWon) {
 

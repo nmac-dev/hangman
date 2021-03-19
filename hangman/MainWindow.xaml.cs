@@ -16,13 +16,19 @@ namespace hangman {
         private HangmanLogic gameLogic;         // An instanc of the game logic
 
         public MainWindow() {
+            
             InitializeComponent();
-            UIControls.loadUIElements(
+            UIControls.loadUIElements(  
                 txbStackPanel.Children.OfType<TextBlock>().ToList(), 
-                imgState, lblLetters, lblLives, txbGuesses, lblVictory);
+                imgState, 
+                lblLetters, 
+                lblLives, 
+                txbGuesses, 
+                lblVictory
+            );
 
             KeyDown += new KeyEventHandler(MainWindow_KeyDown);
-            keyCon = new KeyConverter();
+            keyCon   = new KeyConverter();
         }
 
         /*      Events          */
@@ -39,8 +45,9 @@ namespace hangman {
         }
 
         private void btnGiveUp_Click(object sender, RoutedEventArgs e) {
+            
             if (gameLogic != null) {
-            gameLogic.playerGiveUp();
+                gameLogic.playerGiveUp();
             }
         }
 
@@ -48,12 +55,14 @@ namespace hangman {
         private void MainWindow_KeyDown(object sender, KeyEventArgs e) {
 
             if (gameLogic != null) {
+
                 char key = Char.ToLower(keyCon.ConvertToString(e.Key)[0]);
                 // only accept alpha characters (non-numeric)
                 if (Regex.IsMatch($"{key}", @"[a-z]")) {
                 gameLogic.checkUserInput(key);
                 }
-            } else {
+            } 
+            else {
                 MessageBox.Show("Error: Select difficulty ");
             }
         }

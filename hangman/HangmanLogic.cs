@@ -9,31 +9,36 @@ namespace hangman {
         private const int MAX_LIVES = 12;
 
         /*      Variables       */
-        private static readonly string[] arEasyWords, arMediumWords, arHardWords;   // array of words for each difficulty
-        private static readonly BitmapImage[] arImageStates;                        // the images to be display 
-        private readonly char[] arWordToGuess;                                      // the word the user has to guess (using chars inputs)
-        private List<char> lsGuessedLetters;                                        // tracks which letter has been guessed
-        private int lives, letters;                                                 // elements used to track the game
-        private bool acceptInput;                                                   // if true process user input
+        private static readonly string[] arEasyWords,           // array of words for each difficulty
+                                         arMediumWords, 
+                                         arHardWords;   
+        private static readonly BitmapImage[] arImageStates;    // the images to be display 
+        private readonly char[] arWordToGuess;                  // the word the user has to guess (using chars inputs)
+        private List<char> lsGuessedLetters;                    // tracks which letter has been guessed
+        private int lives,                                      // elements used to track the game
+                    letters;                                                 
+        private bool acceptInput;                               // if true process user input
 
         /*      Constructors        */
 
         /** Load all text files from embedded resources into string arrays */
         static HangmanLogic() {
-            arEasyWords = LoadResources.loadTxtFile(4);
-            arMediumWords = LoadResources.loadTxtFile(6);
-            arHardWords = LoadResources.loadTxtFile(8);
-            arImageStates = LoadResources.loadImages(MAX_LIVES);
+            arEasyWords     = LoadResources.loadTxtFile(4);
+            arMediumWords   = LoadResources.loadTxtFile(6);
+            arHardWords     = LoadResources.loadTxtFile(8);
+            arImageStates   = LoadResources.loadImages(MAX_LIVES);
         }
 
         /** Initialise game (constructor) */
         public HangmanLogic(int difficulty) {
-            letters = difficulty;
-            lives = MAX_LIVES;
-            arWordToGuess = generateAnswer(difficulty);
+
+            letters          = difficulty;
+            lives            = MAX_LIVES;
             lsGuessedLetters = new List<char>();
+            acceptInput      = true;
+
+            arWordToGuess = generateAnswer(difficulty);
             UIControls.resetUI(letters, lives);
-            acceptInput = true;
         }
 
         /*      Functions           */
@@ -44,8 +49,10 @@ namespace hangman {
             // Get random int for the string array index
             Random rdm = new Random();
             int rdmInt = rdm.Next(0, 500);
+
             // Select word to be guessed by the user
             string wordToGuess = stringSize switch {
+
                 4 => arEasyWords[rdmInt],
                 6 => arMediumWords[rdmInt],
                 8 => arHardWords[rdmInt]
@@ -62,16 +69,20 @@ namespace hangman {
                 bool takeLife;
                 // Take life from player only if thr letter has not been guessed
                 if (!lsGuessedLetters.Contains(input)) {
+
                     takeLife = true;
                     lsGuessedLetters.Add(input);
                     UIControls.setGuesses(lsGuessedLetters);
-                } else {
+                } 
+                else {
                     takeLife = false;
                 }
 
                 // Check letter is correct only if it has not been previously guessed
                 if (takeLife) {
+
                     for (int i = 0; i < arWordToGuess.Length; i++) {
+
                         if (arWordToGuess[i] == input) {
                             letters--;
                             takeLife = false;
@@ -88,7 +99,6 @@ namespace hangman {
                     UIControls.setLives(lives);
                     UIControls.setImgState(arImageStates[lives]);
                 }
-
                 checkGameOver(letters == 0, lives == 0);
             }
         }
@@ -97,10 +107,12 @@ namespace hangman {
         public void checkGameOver(bool hasWon, bool hasLost) {
 
             if (hasWon) {
+
                 UIControls.setPlayerWon(true);
                 acceptInput = false;
             } 
             else if (hasLost) {
+
                 UIControls.setPlayerWon(false);
                 acceptInput = false;
             }
@@ -108,8 +120,10 @@ namespace hangman {
 
         /** Update UI with full answer and notify player they lost */
         public void playerGiveUp() {
+
             UIControls.setPlayerWon(false);
             for(int i = 0; i < arWordToGuess.Length; i++) {
+
                 UIControls.setTxb(i, arWordToGuess[i]);
             }
             acceptInput = false;

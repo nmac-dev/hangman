@@ -5,23 +5,25 @@ using System.Windows.Media.Imaging;
 
 namespace hangman {
     /// <summary>
-    /// Loads the embedded resources for the Hangman game
+    ///     Loads the embedded resources for the Hangman game
     /// </summary>
     internal static class LoadResources {
 
-        /*      Assembly        */
+        /**     Assembly        */
         private static readonly Assembly assembly = Assembly.GetExecutingAssembly();
 
-        /*      Directories     */
-        private static readonly string dirImages = "hangman.resources.images.";
-        private static readonly string dirWords  = "hangman.resources.words.";
+        /**     Directories     */
+        private static readonly string 
+            dirImages = "hangman.resources.images.",
+            dirWords  = "hangman.resources.words.";
 
-        /*      File names      */
-        private static string txtEasy   = "easy";
-        private static string txtMedium = "medium";
-        private static string txtHard   = "hard";
+        /**     File names      */
+        private static string 
+            txtEasy   = "easy",
+            txtMedium = "medium",
+            txtHard   = "hard";
 
-        /** Load a text file resource (filtered by difficulty) */
+        /* Load a text file resource (filtered by difficulty) */
         internal static string[] loadTxtFile(int difficulty) {
 
             string[] arString = null;
@@ -54,7 +56,7 @@ namespace hangman {
             return arString;
         }
 
-        /** Loads all .png files (total of 12) */
+        /* Loads all .png files (total of 12) */
         internal static BitmapImage[] loadImages(int maxLives) {
 
             BitmapImage tempBmI;

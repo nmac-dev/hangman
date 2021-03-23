@@ -78,7 +78,7 @@ namespace hangman {
                 } 
                 catch (FileNotFoundException e) {
 
-                    MessageBox.Show($"Exception: {dirImages + i}.png was not found... {e.Message}");
+                    MessageBox.Show($"Error: {dirImages + i}.png was not found... {e.Message}");
                 }
             }
             return arImages;

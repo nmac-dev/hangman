@@ -18,7 +18,7 @@ namespace hangman {
         public MainWindow() {
             
             InitializeComponent();
-            UIControls.loadUIElements(  
+            UIControls.loadUIElements(
                 txbStackPanel.Children.OfType<TextBlock>().ToList(), 
                 imgState, 
                 lblLetters, 
@@ -46,9 +46,8 @@ namespace hangman {
 
         private void btnGiveUp_Click(object sender, RoutedEventArgs e) {
             
-            if (gameLogic != null) {
+            if (gameLogic != null)
                 gameLogic.playerGiveUp();
-            }
         }
 
         /** Detect user keyboard input */
@@ -57,14 +56,13 @@ namespace hangman {
             if (gameLogic != null) {
 
                 char key = Char.ToLower(keyCon.ConvertToString(e.Key)[0]);
+
                 // only accept alpha characters (non-numeric)
-                if (Regex.IsMatch($"{key}", @"[a-z]")) {
+                if (Regex.IsMatch($"{key}", @"[a-z]"))
                 gameLogic.checkUserInput(key);
-                }
             } 
-            else {
-                MessageBox.Show("Error: Select difficulty ");
-            }
+            else
+                MessageBox.Show("Error: Please select the difficulty");
         }
     }
 }

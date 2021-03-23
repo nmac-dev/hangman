@@ -113,10 +113,8 @@ namespace hangman {
                 UIControls.setPlayerWon(true);
                 acceptInput = false;
             } 
-            else if (hasLost) {
-
+            else if (hasLost)
                 playerGiveUp();
-            }
         }
 
         /* Update UI with full answer and notify player they lost */

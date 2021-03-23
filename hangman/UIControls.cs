@@ -9,18 +9,17 @@ using System.Windows.Media.Imaging;
 namespace hangman {
     public static class UIControls {
 
-        /*      Const       */
-        private const int MAX_LIVES = 12;
-
-        /*      UI Elements     */
+        /**      UI Elements     */
         private static List<TextBlock> lsTxbAwnser;     // output for correctly guessed letters
         private static Image imgState;                  // displays the hangman image for the current state of the game
-        private static Label lblLetters,                // letters to guess, lives left, victory (or defeat) banner
-                             lblLives, 
-                             lblVictory;  
+
+        private static Label                            // letters to guess, lives left, victory (or defeat) banner
+            lblLetters,                                 
+            lblLives, 
+            lblVictory;  
         private static TextBlock txbGuesses;            // contains all guessed letters
 
-        /*      UI Functions        */
+        /**      UI Functions        */
         public static void loadUIElements(List<TextBlock> lsTxb, Image img, Label lblSc, Label lblLv, TextBlock txbGes, Label lblVic) {
 
             lsTxbAwnser = lsTxb;
@@ -33,10 +32,9 @@ namespace hangman {
 
         public static void resetUI(int letters, int lives) {
 
-            foreach (TextBlock txb in lsTxbAwnser) {
-                
+            foreach (TextBlock txb in lsTxbAwnser)                
                 txb.Text = "";
-            }
+
             setGuesses(null);
             setLetters(letters);
             setLives(lives);
@@ -44,7 +42,7 @@ namespace hangman {
             lblVictory.Visibility = Visibility.Collapsed;
         }
 
-        /*  Setters     */
+        /**  Setters     */
         public static void setImgState(BitmapImage state) { 
             imgState.Source = state; 
         }
@@ -57,19 +55,21 @@ namespace hangman {
             lblLives.Content = $"Lives: {lives}"; 
         }
 
+        /* Add each input letter to the UI */
         public static void setGuesses(List<char> guesses) {
 
             StringBuilder sb = new StringBuilder();
 
-            if (guesses != null) {
-                guesses.ForEach(delegate (char letter) {
+            if (guesses != null)
+                guesses.ForEach(
+                    delegate (char letter) {
 
                     sb.Append(letter).Append("  ");
-                });
-            }
+                    }
+                );
             txbGuesses.Text = $"Guesses: \n {sb}";
         }
-
+        
         public static void setTxb(int index, char value) { 
             lsTxbAwnser[index].Text = Char.ToUpper(value).ToString(); 
         }
@@ -78,8 +78,10 @@ namespace hangman {
 
             lblVictory.Visibility = Visibility.Visible;
             
-            if (hasWon) { lblVictory.Content = "You Won";  } 
-            else        { lblVictory.Content = "You Lose"; }
+            if (hasWon)
+                lblVictory.Content = "You Won";
+            else
+                lblVictory.Content = "You Lose";
         }
     }
 }

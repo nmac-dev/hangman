@@ -115,8 +115,7 @@ namespace hangman {
             } 
             else if (hasLost) {
 
-                UIControls.setPlayerWon(false);
-                acceptInput = false;
+                playerGiveUp();
             }
         }
 
@@ -125,7 +124,7 @@ namespace hangman {
 
             UIControls.setPlayerWon(false);
 
-            for(int i = 0; i < arWordToGuess.Length; i++)
+            for (int i = 0; i < arWordToGuess.Length; i++)
                 UIControls.setTxb(i, arWordToGuess[i]);
 
             acceptInput = false;

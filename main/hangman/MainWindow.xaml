@@ -68,11 +68,11 @@
         </StackPanel>
         <!--Output Display-->
         <StackPanel Orientation="Vertical" Margin="379,19,0,0" HorizontalAlignment="Left" Width="195" Height="361" VerticalAlignment="Top" Grid.Row="1">
-            <Label x:Name="lblLetters" Content="Letters: X" Foreground="#fff" FontSize="15" Height="30" />
-            <Label x:Name="lblLives" Content="Lives: X" Foreground="#fff" FontSize="15" Height="30"/>
+            <Label x:Name="lblLetters" Content="Letters: " Foreground="#fff" FontSize="15" Height="30" />
+            <Label x:Name="lblLives" Content="Lives: " Foreground="#fff" FontSize="15" Height="30"/>
             <Label/>
             <Separator/>
-            <TextBlock x:Name="txbGuesses" Text="Guesses: X" TextWrapping="Wrap" Width="auto" Background="Transparent" FontSize="15" />
+            <TextBlock x:Name="txbGuesses" Text="Guesses: " TextWrapping="Wrap" Width="auto" Background="Transparent" FontSize="15" />
             <Separator/>
         </StackPanel>
         <!--Main Image-->

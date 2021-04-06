@@ -80,8 +80,7 @@ namespace hangman {
                     lsGuessedLetters.Add(input);
                     UIControls.setGuesses(lsGuessedLetters);
                 } 
-                else 
-                    takeLife = false;
+                else takeLife = false;
 
                 // Check letter is correct only if it has not been previously guessed
                 if (takeLife)
@@ -92,7 +91,6 @@ namespace hangman {
                             takeLife = false;
                             UIControls.setTxb(i, input);
                             UIControls.setLetters(letters);
-                            continue;
                         }
 
                 // incorrect guess

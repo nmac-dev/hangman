@@ -61,8 +61,7 @@ namespace hangman {
                 if (Regex.IsMatch($"{key}", @"[a-z]"))
                 gameLogic.checkUserInput(key);
             } 
-            else
-                MessageBox.Show("Error: Please select the difficulty");
+            else System.Media.SystemSounds.Beep.Play();
         }
     }
 }

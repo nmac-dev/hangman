@@ -40,7 +40,7 @@ Before accepting input the user must select a difficulty:
  * To begin a new game simply reselect the difficulty to generate a new word
  * The "Give Up" button will reveal the correct word and notify the player they lost
   
-**Game Stats**
+**Game Stats**  
 <img alt="Game Stats" src="README/hm-stats.png">
   
 ## Showcase Screenshots
@@ -75,4 +75,4 @@ The resources are contained within `hangman.dll`
 `LoadResources.cs` is a static utility class used to load the embedded resources by getting the executing assembly  
   
 Here is the file structure for the resources within the project:  
-<img alt="resources" href="README/resources.png">
+<img alt="resources" src="README/resources.png">

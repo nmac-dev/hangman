@@ -5,11 +5,12 @@ A game of Hangman in a WPF application utilising embedded resources.
  - [How To Run?](#How-To-Run?)
    - [Requirements](#Requirements)
    - [Development Tools](#Development-Tools)
+   - [How to Play](#How-to-Play)
  - [Showcase Screenshots](#Showcase-Screenshots)
  - [Design](#Design)
    - [Flow-Chart Concept](#Flow-Chart-Concept)
    - [UI](#UI)
-   - [Logic](#Logic)
+   - [Embedded Resources](#Embedded-Resources)
   
 ## How to Run
 A sample `hangman.exe` file can be found in the `sample` directory.
@@ -48,10 +49,10 @@ Before accepting input the user must select a difficulty:
 <img alt="Mid-Game" height="450px" src="README/hm-1.png">
   
 **Player Won**  
-<img alt="Red Wins" height="450px" src="README/hm-won.png">
+<img alt="Player Won" height="450px" src="README/hm-won.png">
   
 **Player Lost**  
-<img alt="Yellow Wins" height="450px" src="README/hm-lost.png">
+<img alt="Player Lost" height="450px" src="README/hm-lost.png">
   
 ## Design
   
@@ -68,3 +69,10 @@ A game of hangman will need the following UI elements:
   
 **UI Design:**  
 <img alt="UI Design" height="450px" src="README/hm_ui.png">
+  
+### Embedded Resources
+The resources are contained within `hangman.dll`  
+`LoadResources.cs` is a static utility class used to load the embedded resources by getting the executing assembly  
+  
+Here is the file structure for the resources within the project:  
+<img alt="resources" href="README/resources.png">

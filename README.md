@@ -40,7 +40,7 @@ Before accepting input the user must select a difficulty:
  * To begin a new game simply reselect the difficulty to generate a new word
  * The "Give Up" button will reveal the correct word and notify the player they lost
   
-**Game Stats**
+**Game Stats**  
 <img alt="Game Stats" src="README/hm-stats.png">
   
 ## Showcase Screenshots
